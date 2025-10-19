@@ -9,6 +9,12 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(length=128), nullable=False, unique=True, index=True)
     hashed_password = Column(String, nullable=False)
+    first_name = Column(String, nullable=False)
+    last_name = Column(String, nullable=True)
+    birth_date = Column(Integer, nullable=True)
+    phone = Column(Integer, nullable=True)
+    email = Column(String, nullable=False)
+    
     # add extra fields: first_name(required), last_name, birth_date, phone, email
 
     # role: admin, user(default), oxirida
@@ -25,6 +31,8 @@ class Task(Base):
     description = Column(Text, default='')
     status = Column(Boolean, default=False, nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    category = Column(String, nullable=True)
+    priority = Column(String, nullable=False)
     # add extra fields: category, priority(1-5)
 
     def __repr__(self) -> str:
